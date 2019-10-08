@@ -2,7 +2,6 @@ package de.gesundheitsforen.messageListener.humidity;
 
 import java.util.List;
 
-import de.gesundheitsforen.messageListener.temperature.Temperature;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -16,7 +15,6 @@ import javax.persistence.EntityNotFoundException;
 
 @RestController
 @RequestMapping("/humidity")
-@CrossOrigin(origins = "http://localhost:4200")
 public class HumidityController {
 
     @Autowired
@@ -24,7 +22,6 @@ public class HumidityController {
 
     @Autowired
     HumidityService humidityService;
-
 
     @GetMapping(
             path = "/list",
