@@ -37,7 +37,6 @@ public class TemperatureService {
                 .orElseThrow(() -> new EntityNotFoundException("ID does not exist"));
     }
 
-
     public List<Temperature> getTemperatures() {
         return (List<Temperature>) temperatureRepository.findAll();
     }

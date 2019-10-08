@@ -1,4 +1,2 @@
-#Running Application
-```
-mvn springboot:run 
-```
+# SensorDB_backend
+
