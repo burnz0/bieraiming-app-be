@@ -1,16 +1,11 @@
 package net.gesundheitsforen.messageListener.config;
 
 import lombok.Data;
-import net.gesundheitsforen.messageListener.user.Authorities;
-import net.gesundheitsforen.messageListener.user.User;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import java.util.Properties;
+import org.springframework.beans.factory.annotation.Value;
+
+import org.springframework.context.annotation.Configuration;
+
 
 @Configuration
 @Data

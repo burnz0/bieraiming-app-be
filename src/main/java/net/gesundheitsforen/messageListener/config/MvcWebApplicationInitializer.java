@@ -1,6 +1,5 @@
 package net.gesundheitsforen.messageListener.config;
 
-import net.gesundheitsforen.messageListener.MessageListenerApplication;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class MvcWebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -14,7 +13,7 @@ public class MvcWebApplicationInitializer extends AbstractAnnotationConfigDispat
     // Load spring web configuration
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{WebConfig.class};
+        return new Class[]{ApplicationWebConfig.class};
     }
 
     @Override
