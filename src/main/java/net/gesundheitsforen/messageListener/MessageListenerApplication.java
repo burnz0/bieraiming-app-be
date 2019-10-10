@@ -1,6 +1,6 @@
 package net.gesundheitsforen.messageListener;
 
-import net.gesundheitsforen.messageListener.config.ApplicationConfigReader;
+import net.gesundheitsforen.messageListener.config.AppConfig;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -25,13 +25,13 @@ import org.springframework.messaging.handler.annotation.support.DefaultMessageHa
 public class MessageListenerApplication extends SpringBootServletInitializer implements RabbitListenerConfigurer {
 
 	@Autowired
-	private ApplicationConfigReader applicationConfig;
+	private AppConfig applicationConfig;
 	
-	public ApplicationConfigReader getApplicationConfig() {
+	public AppConfig getApplicationConfig() {
 		return applicationConfig;
 	}
 	
-	public void setApplicationConfig(ApplicationConfigReader applicationConfig) {
+	public void setApplicationConfig(AppConfig applicationConfig) {
 		this.applicationConfig = applicationConfig;
 	}
 	

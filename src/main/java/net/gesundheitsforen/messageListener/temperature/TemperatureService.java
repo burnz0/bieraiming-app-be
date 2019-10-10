@@ -1,6 +1,6 @@
 package net.gesundheitsforen.messageListener.temperature;
 
-import net.gesundheitsforen.messageListener.config.ApplicationConfigReader;
+import net.gesundheitsforen.messageListener.config.AppConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -17,7 +17,7 @@ public class TemperatureService {
     private Temperature tempTemp = new Temperature();
 
     @Autowired
-    ApplicationConfigReader applicationConfigReader;
+    AppConfig appConfig;
 
     @Autowired
     TemperatureRepository temperatureRepository;

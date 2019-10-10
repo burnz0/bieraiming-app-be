@@ -1,6 +1,6 @@
 package net.gesundheitsforen.messageListener.humidity;
 
-import net.gesundheitsforen.messageListener.config.ApplicationConfigReader;
+import net.gesundheitsforen.messageListener.config.AppConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -17,7 +17,7 @@ public class HumidityService {
     private Humidity tempHum = new Humidity();
 
     @Autowired
-    ApplicationConfigReader applicationConfigReader;
+    AppConfig appConfig;
 
     @Autowired
     HumidityRepository humidityRepository;
