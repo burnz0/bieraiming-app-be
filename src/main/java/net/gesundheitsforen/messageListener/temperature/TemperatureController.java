@@ -13,7 +13,7 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/temperature")
+@RequestMapping("/api/temperature")
 @CrossOrigin(origins = "http://localhost:4200")
 public class TemperatureController {
 

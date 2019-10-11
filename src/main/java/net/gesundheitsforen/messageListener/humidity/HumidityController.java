@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.EntityNotFoundException;
 
 @RestController
-@RequestMapping("/humidity")
+@RequestMapping("/api/humidity")
 public class HumidityController {
 
     @Autowired
