@@ -1,4 +1,4 @@
-package com.boraji.tutorial.spring.config;
+package net.gesundheitsforen.messageListener.config;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 

@@ -29,7 +29,11 @@
 <body>
 
 <div class="container">
-
+    <form method="GET" action="${contextPath}/swagger-ui.html" class="swagger-ui">
+        <div class="swagger">
+            <button class="btn btn-success" type="Swagger">Swagger</button>
+        </div>
+    </form>
     <form method="POST" action="${contextPath}/login" class="form-signin">
         <h2 class="form-heading">Log in</h2>
 
