@@ -1,6 +1,7 @@
 package net.gesundheitsforen.messageListener.user;
 
-import lombok.Data;
+import net.gesundheitsforen.messageListener.role.Role;
+
 import java.util.Set;
 import javax.persistence.*;
 

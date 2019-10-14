@@ -1,5 +1,6 @@
 package net.gesundheitsforen.messageListener.user;
 
+import net.gesundheitsforen.messageListener.role.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

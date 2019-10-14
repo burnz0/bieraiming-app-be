@@ -1,4 +1,6 @@
-package net.gesundheitsforen.messageListener.user;
+package net.gesundheitsforen.messageListener.role;
+
+import net.gesundheitsforen.messageListener.user.User;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

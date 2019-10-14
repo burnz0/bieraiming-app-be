@@ -1,5 +1,6 @@
-package net.gesundheitsforen.messageListener.user;
+package net.gesundheitsforen.messageListener.role;
 
+import net.gesundheitsforen.messageListener.role.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RoleRepository extends JpaRepository<Role, Long> {
