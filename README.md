@@ -1,2 +1,0 @@
-# SensorDB_backend
-
