@@ -17,7 +17,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/temperature")
-@CrossOrigin(origins = "http://localhost:4200")
 public class TemperatureController {
 
     @Autowired

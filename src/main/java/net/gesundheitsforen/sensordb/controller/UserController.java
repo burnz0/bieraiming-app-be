@@ -14,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class UserController {
@@ -47,9 +50,23 @@ public class UserController {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
 
-        UserProfile userProfile = new UserProfile(user.getId(), user.getUsername(), user.getName(), user.getCreatedAt());
+        UserProfile userProfile = new UserProfile(user.getId(), user.getUsername(),
+                user.getName(), user.getCreatedAt());
 
         return userProfile;
     }
 
+    @GetMapping("/users/list")
+    public List<UserProfile> getAllUsers() {
+        List<User> userList = userRepository.findAll();
+        List<UserProfile> result = new ArrayList<>();
+
+        for (User user: userList) {
+            UserProfile userProfile = new UserProfile(user.getId(), user.getUsername(), user.getName(),
+                    user.getCreatedAt());
+            result.add(userProfile);
+        }
+
+        return result;
+    }
 }
