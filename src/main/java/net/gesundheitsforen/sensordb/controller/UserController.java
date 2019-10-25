@@ -56,7 +56,7 @@ public class UserController {
                 .orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
 
         UserProfile userProfile = new UserProfile(user.getId(), user.getUsername(),
-                user.getName(), user.getCreatedAt(), userService.getAuthorities(user.getId()));
+                user.getName(), user.getCreatedAt(), user.getRoles());
 
         return userProfile;
     }
@@ -69,7 +69,7 @@ public class UserController {
 
         for (User user : userList) {
             UserProfile userProfile = new UserProfile(user.getId(), user.getUsername(),
-                    user.getName(), user.getCreatedAt(), userService.getAuthorities(user.getId()));
+                    user.getName(), user.getCreatedAt(), user.getRoles());
             result.add(userProfile);
         }
 

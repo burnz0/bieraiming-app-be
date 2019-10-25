@@ -16,9 +16,9 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public Set<Role> getAuthorities(Long ID) {
+    public String getUserRole(Long ID) {
         Optional<User> user = userRepository.findById(ID);
-        Set<Role> authList = user.get().getRoles();
-        return authList;
+
+        return "TODO";
     }
 }

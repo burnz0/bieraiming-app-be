@@ -65,7 +65,7 @@ public class AuthController {
         String jwt = tokenProvider.generateToken(authentication);
         // Get ID from UserRepository and it to RoleRepository
         Optional<User> user = userRepository.findById(tokenProvider.getUserIdFromJWT(jwt));
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, user.get().getRoles()));
+        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
     }
 
     @PostMapping("/signup")
@@ -86,8 +86,7 @@ public class AuthController {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
-                .orElseThrow(() -> new AppException("User Role not set."));
+        Role userRole = roleRepository.findByName("ROLE_USER");
 
         user.setRoles(Collections.singleton(userRole));
 
