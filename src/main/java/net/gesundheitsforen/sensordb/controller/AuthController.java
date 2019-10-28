@@ -1,8 +1,6 @@
 package net.gesundheitsforen.sensordb.controller;
 
-import net.gesundheitsforen.sensordb.exception.AppException;
 import net.gesundheitsforen.sensordb.model.Role;
-import net.gesundheitsforen.sensordb.model.RoleName;
 import net.gesundheitsforen.sensordb.model.User;
 import net.gesundheitsforen.sensordb.payload.ApiResponse;
 import net.gesundheitsforen.sensordb.payload.JwtAuthenticationResponse;
@@ -29,7 +27,6 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.util.Collections;
 import java.util.Optional;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -70,12 +67,12 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
-        if(userRepository.existsByUsername(signUpRequest.getUsername())) {
+        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return new ResponseEntity<>(new ApiResponse(false, "Username is already taken!"),
                     HttpStatus.BAD_REQUEST);
         }
 
-        if(userRepository.existsByEmail(signUpRequest.getEmail())) {
+        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
             return new ResponseEntity<>(new ApiResponse(false, "Email Address already in use!"),
                     HttpStatus.BAD_REQUEST);
         }
@@ -88,7 +85,7 @@ public class AuthController {
 
         Role userRole = roleRepository.findByName("ROLE_USER");
 
-        user.setRoles(Collections.singleton(userRole));
+        user.setRole(Collections.singleton(userRole));
 
         User result = userRepository.save(user);
 

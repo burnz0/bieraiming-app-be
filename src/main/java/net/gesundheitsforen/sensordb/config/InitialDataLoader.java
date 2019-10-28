@@ -43,11 +43,12 @@ public class InitialDataLoader implements
 
         // == create initial
         createUserIfNotFound("SensorDB Admin", "admin", "admin@gesundheitsforen.net", "Abc123!!", new ArrayList<Role>(Arrays.asList(adminRole)));
+        createUserIfNotFound("SensorDB User", "user", "user@gesundheitsforen.net", "Abc123!!", new ArrayList<Role>(Arrays.asList(userRole)));
         alreadySetup = true;
     }
 
     @Transactional
-    private Role createRoleIfNotFound(
+    protected Role createRoleIfNotFound(
             String name) {
 
         Role role = roleRepository.findByName(name);
@@ -59,7 +60,7 @@ public class InitialDataLoader implements
     }
 
     @Transactional
-    private void createUserIfNotFound(final String name, final String username, final String email, final String password, final Collection<Role> roles) {
+    protected void createUserIfNotFound(final String name, final String username, final String email, final String password, final Collection<Role> roles) {
         Boolean userExists = userRepository.existsByUsername(username);
         if (userExists == false) {
             User user = new User();
@@ -67,7 +68,7 @@ public class InitialDataLoader implements
             user.setUsername(username);
             user.setEmail(email);
             user.setPassword(passwordEncoder.encode(password));
-            user.setRoles(roles);
+            user.setRole(roles);
             userRepository.save(user);
         }
     }

@@ -2,15 +2,9 @@ package net.gesundheitsforen.sensordb.model;
 
 import lombok.Data;
 import net.gesundheitsforen.sensordb.model.audit.DateAudit;
-import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 @Data
 @Entity
@@ -38,9 +32,11 @@ public class User extends DateAudit {
     @Column(length = 60)
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    private Collection<Role> roles;
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Collection<Role> role;
 
     public User() {
         super();
@@ -51,5 +47,11 @@ public class User extends DateAudit {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+
+    public User(final String name) {
+        super();
+        this.name = name;
     }
 }

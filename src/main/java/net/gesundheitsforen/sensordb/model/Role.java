@@ -1,6 +1,8 @@
 package net.gesundheitsforen.sensordb.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -14,7 +16,8 @@ public class Role {
     private Long id;
 
     private String name;
-    @ManyToMany(mappedBy = "roles")
+
+    @ManyToMany
     private Collection<User> users;
 
     public Role() {
