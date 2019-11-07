@@ -50,7 +50,6 @@ public class User extends DateAudit {
         this.password = password;
     }
 
-
     public User(final String name) {
         super();
         this.name = name;
