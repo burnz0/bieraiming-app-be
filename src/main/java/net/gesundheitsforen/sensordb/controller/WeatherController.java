@@ -24,7 +24,13 @@ public class WeatherController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<?> getWeather(@PathVariable String Location) throws IOException {
-        URL url = new URL("http://api.weatherstack.com/current?access_key=0fc3c9bdd92a7d17b4d5ef649884f0af&query=" + Location);
+        //replace spaces with %20 for URL call
+        String loc = Location;
+        loc = loc.trim();
+        loc = loc.replaceAll("\\s", "%20");
+
+
+        URL url = new URL("http://api.weatherstack.com/current?access_key=0fc3c9bdd92a7d17b4d5ef649884f0af&query=" + loc);
         String result = "";
         try {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
