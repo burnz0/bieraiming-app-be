@@ -27,10 +27,12 @@ public class HumidityService {
     @RabbitListener(queues = "${sensor1.queue.name}")
     public void receiveHumidity(String content) {
         Humidity humidity = new Humidity(content);
-        if (!content.equals(tempHum.getValue())) {
-            humidityRepository.save(humidity);
-            log.info("Humidity: {} %.", content);
-        }
+//        if (!content.equals(tempHum.getValue())) {
+//            humidityRepository.save(humidity);
+//            log.info("Humidity: {} %.", content);
+//        }
+        humidityRepository.save(humidity);
+        log.info("Humidity: {} %.", content);
         tempHum.setValue(content);
     }
 

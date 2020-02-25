@@ -27,10 +27,12 @@ public class TemperatureService {
     @RabbitListener(queues = "${sensor2.queue.name}")
     public void receiveTemperature(String content) {
         Temperature temperature = new Temperature(content);
-        if (!content.equals(tempTemp.getValue())) {
-            temperatureRepository.save(temperature);
-            log.info("Temperature: {} °C", content);
-        }
+//        if (!content.equals(tempTemp.getValue())) {
+//            temperatureRepository.save(temperature);
+//            log.info("Temperature: {} °C", content);
+//        }
+        temperatureRepository.save(temperature);
+        log.info("Temperature: {} °C", content);
         tempTemp.setValue(content);
     }
 
