@@ -32,7 +32,7 @@ public class TemperatureController {
     @GetMapping(
             value = "/show/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> showHumidity(@PathVariable Long id) {
+    public ResponseEntity<?> showTemperature(@PathVariable Long id) {
         Temperature result = null;
         try {
             result = temperatureService.getTemperatureById(id);
@@ -46,13 +46,40 @@ public class TemperatureController {
 
     @ApiOperation(value = "List all Temperatures")
     @GetMapping(
-            path = "/list",
+            path = "/show/all",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public List<Temperature> getTemperatures() {
         return temperatureService.getTemperatures();
     }
- 
+
+    @ApiOperation(value = "Get 60 most recent Temperatures ")
+    @GetMapping(
+            path="/show/recent",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public List<Temperature> getRecentTemperatures() {
+        return temperatureService.getRecentTemperatures();
+    }
+
+    //Variante Getter letzte Temp in Liste
+    @ApiOperation(value = "Get the latest Temperature in List")
+    @GetMapping(
+            path="/show/latest/list",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public List<Temperature> getLatestTemperatureList() {
+        return temperatureService.getLatestTemperatureList();
+    }
+    //Variante Getter letzte Temp als Objekt
+    @ApiOperation(value = "Get the latest Temperature")
+    @GetMapping(
+            path="/show/latest/object",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public Temperature getLatestTemperatureObject() {
+        return temperatureService.getLatestTemperatureObject();
+    }
     @PostMapping("/add")
     public void addTemperature(@RequestBody Temperature temperature) {
         temperatureService.addTemperature(temperature);

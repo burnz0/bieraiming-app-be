@@ -2,6 +2,7 @@ package net.gesundheitsforen.sensordb.service;
 
 import net.gesundheitsforen.sensordb.config.RabbitMQConfig;
 import net.gesundheitsforen.sensordb.model.Humidity;
+import net.gesundheitsforen.sensordb.model.Temperature;
 import net.gesundheitsforen.sensordb.repository.HumidityRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,6 +44,29 @@ public class HumidityService {
 
     public List<Humidity> getHumidities() {
         return (List<Humidity>) humidityRepository.findAll();
+    }
+
+    public List<Humidity> getRecentHumidities() {
+        List<Humidity> allHumidities = (List<Humidity>) humidityRepository.findAll();
+        if(allHumidities.size() <= 60){
+            return allHumidities;
+        }
+        else{
+            List<Humidity> recentHumidities = allHumidities.subList(allHumidities.size()-60, allHumidities.size());
+            return recentHumidities;
+        }
+    }
+    //Variante Getter letzte Humidity mit Liste als return
+    public List<Humidity> getLatestHumidityList() {
+        List<Humidity> allHumidities = (List<Humidity>) humidityRepository.findAll();
+        List<Humidity> latestHumidity = allHumidities.subList(allHumidities.size()-1, allHumidities.size());
+        return latestHumidity;
+    }
+
+    //Variante Getter letzte Humidity mit Object Humidity
+    public Humidity getLatestHumidityObject() {
+        List<Humidity> allHumidities = (List<Humidity>) humidityRepository.findAll();
+        return allHumidities.get(allHumidities.size()-1);
     }
 
     public void addHumidity(Humidity humidity) {

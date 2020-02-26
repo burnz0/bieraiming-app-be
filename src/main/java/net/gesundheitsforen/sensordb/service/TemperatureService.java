@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 @Service
 public class TemperatureService {
@@ -43,6 +46,30 @@ public class TemperatureService {
 
     public List<Temperature> getTemperatures() {
         return (List<Temperature>) temperatureRepository.findAll();
+    }
+
+    public List<Temperature> getRecentTemperatures() {
+        List<Temperature> allTemperatures = (List<Temperature>) temperatureRepository.findAll();
+        if(allTemperatures.size() <= 60){
+            return allTemperatures;
+        }
+        else{
+            List<Temperature> recentTemperatures = allTemperatures.subList(allTemperatures.size()-60, allTemperatures.size());
+            return recentTemperatures;
+        }
+    }
+
+    //Variante Getter für letzte Temp mit List als return
+    public List<Temperature> getLatestTemperatureList() {
+        List<Temperature> allTemperatures = (List<Temperature>) temperatureRepository.findAll();
+        List<Temperature> latestTemperature = allTemperatures.subList(allTemperatures.size()-1, allTemperatures.size());
+        return latestTemperature;
+    }
+
+    //Variante Getter für letzte Temp mit Temperatur Objekt als return
+    public Temperature getLatestTemperatureObject(){
+        List <Temperature> allTemperatures = (List<Temperature>) temperatureRepository.findAll();
+        return allTemperatures.get(allTemperatures.size()-1);
     }
 
     public void addTemperature(Temperature temperature) {

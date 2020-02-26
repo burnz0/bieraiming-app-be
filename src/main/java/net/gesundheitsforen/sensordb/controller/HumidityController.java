@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import net.gesundheitsforen.sensordb.model.Humidity;
+import net.gesundheitsforen.sensordb.model.Temperature;
 import net.gesundheitsforen.sensordb.repository.HumidityRepository;
 import net.gesundheitsforen.sensordb.service.HumidityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,17 +26,11 @@ public class HumidityController {
     @Autowired
     HumidityService humidityService;
 
-    @GetMapping(
-            path = "/list",
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Humidity> getHumidities() {
-        return humidityService.getHumidities();
-    }
-
     @ApiOperation(value = "Show a Humidity by an ID")
     @ApiResponses(value = {
             @ApiResponse(code = 500, message = "ID does not exist.")
     })
+
     @GetMapping(
             value = "/show/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -48,6 +43,41 @@ public class HumidityController {
             return new ResponseEntity<>("ID not found", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @GetMapping(
+            path = "/show/all",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Humidity> getHumidities() {
+        return humidityService.getHumidities();
+    }
+
+    @ApiOperation(value = "Get the 60 most recent Humidities")
+    @GetMapping(
+            path="/show/recent",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public List<Humidity> getRecentHumidities() {
+        return humidityService.getRecentHumidities();
+    }
+//    Variante Getter Latest mit List als return
+    @ApiOperation(value = "Get the latest Humidity")
+    @GetMapping(
+            path="/show/latest/list",
+            produces =  MediaType.APPLICATION_JSON_VALUE
+    )
+    public List<Humidity> getLatestHumidityList() {
+        return humidityService.getLatestHumidityList();
+    }
+
+    //Variante Getter latest mit Humidity Object return
+    @ApiOperation(value = "Get the latest Humidity")
+    @GetMapping(
+            path="/show/latest/object",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public Humidity getLatestHumidityObject() {
+        return  humidityService.getLatestHumidityObject();
     }
 
     @PostMapping("/add")
