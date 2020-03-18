@@ -65,8 +65,7 @@ public class InitialDataLoader implements
     }
 
     @Transactional
-    protected Role createRoleIfNotFound(
-            String name) {
+    protected Role createRoleIfNotFound(String name) {
 
         Role role = roleRepository.findByName(name);
         if (role == null) {
@@ -92,35 +91,37 @@ public class InitialDataLoader implements
 
     @Transactional
     protected void createTemperaturesIfNoneFound() {
-        if (this.temperatureRepository.count() <= 0) {
-            for (int i=0; i<60; i++) {
-                Temperature temperature = new Temperature();
-                temperature.setId(i+1);
-                temperature.setValue(Integer.valueOf(ThreadLocalRandom.current().nextInt(17, 26+1)).toString());
-                temperature.setCreateDateTime(LocalDateTime.now());
-                temperatureRepository.save(temperature);
-                //manuelles Update der Zeit
-                Temperature temperatureTime = temperatureRepository.findById(temperature.getId())
-                        .orElseThrow(() -> new EntityNotFoundException("ID does not exist"));
-                temperatureTime.setCreateDateTime(LocalDateTime.now().plusSeconds(i*10));
-            }
+        if (temperatureRepository.count() > 0) {
+            return;
         }
-    }
+        for (int i=0; i<60; i++) {
+            Temperature temperature = new Temperature();
+            temperature.setId(i+1);
+            temperature.setValue(Integer.valueOf(ThreadLocalRandom.current().nextInt(17, 26+1)).toString());
+            temperature.setCreateDateTime(LocalDateTime.now());
+            temperatureRepository.save(temperature);
+            //manuelles Update der Zeit
+            Temperature temperatureTime = temperatureRepository.findById(temperature.getId())
+                    .orElseThrow(() -> new EntityNotFoundException("ID does not exist"));
+            temperatureTime.setCreateDateTime(LocalDateTime.now().plusSeconds(i*10));
+        }
+}
 
     @Transactional
     protected void createHumiditiesIfNoneFound(){
-        if (humidityRepository.count() <= 0){
-            for(int i=0; i<60; i++) {
-                Humidity humidity = new Humidity();
-                humidity.setId(i+1);
-                humidity.setValue(Integer.valueOf(ThreadLocalRandom.current().nextInt(15,23+1)).toString());
-                humidity.setCreateDateTime(LocalDateTime.now());
-                humidityRepository.save(humidity);
-                //manuelles Update der Zeit
-                Humidity humidityTime = humidityRepository.findById(humidity.getId())
-                        .orElseThrow(() -> new EntityNotFoundException("ID does not exist"));
-                humidityTime.setCreateDateTime(LocalDateTime.now().plusSeconds(i*10));
-            }
+        if (humidityRepository.count() > 0) {
+            return;
+        }
+        for (int i=0; i<60; i++) {
+            Humidity humidity = new Humidity();
+            humidity.setId(i+1);
+            humidity.setValue(Integer.valueOf(ThreadLocalRandom.current().nextInt(15,23+1)).toString());
+            humidity.setCreateDateTime(LocalDateTime.now());
+            humidityRepository.save(humidity);
+            //manuelles Update der Zeit
+            Humidity humidityTime = humidityRepository.findById(humidity.getId())
+                    .orElseThrow(() -> new EntityNotFoundException("ID does not exist"));
+            humidityTime.setCreateDateTime(LocalDateTime.now().plusSeconds(i*10));
         }
     }
 }

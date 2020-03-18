@@ -19,7 +19,7 @@ import java.util.ListIterator;
 public class TemperatureService {
 
     private static final Logger log = LoggerFactory.getLogger(TemperatureService.class);
-    private Temperature tempTemp = new Temperature();
+//    private Temperature tempTemp = new Temperature();
 
     @Autowired
     RabbitMQConfig rabbitMQConfig;
@@ -34,9 +34,9 @@ public class TemperatureService {
 //            temperatureRepository.save(temperature);
 //            log.info("Temperature: {} °C", content);
 //        }
+//        tempTemp.setValue(content);
         temperatureRepository.save(temperature);
         log.info("Temperature: {} °C", content);
-        tempTemp.setValue(content);
     }
 
     public Temperature getTemperatureById(Long id) throws EntityNotFoundException {

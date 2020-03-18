@@ -4,7 +4,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import net.gesundheitsforen.sensordb.model.Humidity;
-import net.gesundheitsforen.sensordb.model.Temperature;
 import net.gesundheitsforen.sensordb.repository.HumidityRepository;
 import net.gesundheitsforen.sensordb.service.HumidityService;
 import org.springframework.beans.factory.annotation.Autowired;

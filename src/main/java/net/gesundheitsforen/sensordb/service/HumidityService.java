@@ -2,7 +2,6 @@ package net.gesundheitsforen.sensordb.service;
 
 import net.gesundheitsforen.sensordb.config.RabbitMQConfig;
 import net.gesundheitsforen.sensordb.model.Humidity;
-import net.gesundheitsforen.sensordb.model.Temperature;
 import net.gesundheitsforen.sensordb.repository.HumidityRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,8 +15,13 @@ import java.util.List;
 @Service
 public class HumidityService {
 
-    private static final Logger log = LoggerFactory.getLogger(HumidityService.class);
-    private Humidity tempHum = new Humidity();
+    private static final Logger log;
+
+    static {
+        log = LoggerFactory.getLogger(HumidityService.class);
+    }
+
+//    private Humidity tempHum = new Humidity();
 
     @Autowired
     RabbitMQConfig rabbitMQConfig;
@@ -32,9 +36,9 @@ public class HumidityService {
 //            humidityRepository.save(humidity);
 //            log.info("Humidity: {} %.", content);
 //        }
+//        tempHum.setValue(content);
         humidityRepository.save(humidity);
         log.info("Humidity: {} %.", content);
-        tempHum.setValue(content);
     }
 
     public Humidity getHumidityById(Long id) throws EntityNotFoundException {
